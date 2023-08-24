@@ -240,3 +240,26 @@ Assuming the player's eyes are half as high as the walls, we can display all the
 <p align="center">
   <img src="assets/retro-raycasting-game-part1/screenshot.png" width="700"/>
 </p>
+
+
+Hovertank 3D also had uniformly coloured walls, but we'll see that it's not very complicated to apply a texture.
+
+Let's start with a square image which will be the texture of a piece of wall. The idea is also to cut this texture into vertical strips and then to stretch or contract them according to the height of the strip of wall that is rendered on the screen.
+
+<p align="center">
+  <img src="assets/retro-raycasting-game-part1/redbrick.png" width="300"/>
+</p>
+
+To know which stip of the texture needs to be apply on the screen, we have to compute the ditance between the point of impact of the ray on the wall end the left side of that piece of wall. Let's note this ditance $$t$$.
+
+<p align="center">
+  <img src="assets/retro-raycasting-game-part1/textureoffset.png" width="400"/>
+</p>
+
+
+Given that the texture is $$N\times N$$ pixels, the corresponding band to be displayed on screen is $$\lfloor tN\rfloor$$. By using the same scaling technique for height, you can get textured walls!
+
+
+<p align="center">
+  <img src="assets/retro-raycasting-game-part1/texturedwalls.png" width="700"/>
+</p>
