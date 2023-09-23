@@ -28,20 +28,20 @@ The principle of the raycasting method is to start from a 2-dimensional world re
 To display what the player sees, rays are cast from the player outward until they encounter a wall. The length of the ray corresponds to the distance between the player and the wall, which allows determining the wall's height to be displayed on the screen. In the figure below, you can see that rays are sent throuth the field of view of the player. Their length determines the height of the wall strips that are drawn on the left.
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/principle.png" width="600"/>
+  <img src="assets/retro-raycasting-game-part1/principle.png" width="100%"/>
 </p>
 
 
 Let's define our game space a bit more clearly. The red point represents the player. Their position in the game space is marked by the vector $$\vec{p}$$. The direction in which the player is looking is represented by the unit vector $$\vec{d}$$. Lastly, the vector $$\vec{c}$$ is orthogonal to $$\vec{d}$$.
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/vector.png" width="500"/>
+  <img src="assets/retro-raycasting-game-part1/vector.png" width="40%"/>
 </p>
 
 Vectors $$\vec{d}$$ and $$\vec{c}$$ together form another orthogonal basis, known as the camera's basis. The projection plane for the player's vision is directed by vector $$\vec{c}$$ and centered on $$\vec{d}$$. In the image below, you can see the camera's projection plane as well as the two rays at the edges of the player's field of vision. Note that the norm of vector $$\vec{c}$$ determines the width of the player's field of vision. The width of the field of view is equal to two times the length of the vactor $$\vec{c}$$.
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/fieldOfView.png" width="500"/>
+  <img src="assets/retro-raycasting-game-part1/fieldOfView.png" width="60%"/>
 </p>
 
 
@@ -65,7 +65,7 @@ And yes, we do have a problem, if we consider that the height of the strips of t
 To solve this problem, we must consider not the Euclidean length of the rays (distances between the player and the wall) but rather the distance between the wall and the projection plane. And we know that the distance between a point (the intersection of the ray and the wall) and a straight line (plane of projection) is equal to the perpendicular distance between that point and the line.
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/perp.png" width="500"/>
+  <img src="assets/retro-raycasting-game-part1/perp.png" width="60%"/>
 </p>
 
 
@@ -73,15 +73,15 @@ Let's see how to calculate the perpendicular distance noted $$r_{prep}$$ from th
 If we note $$\theta$$ the angle formed by the vectors $$\vec{d}$$ and $$\vec{d_i}$$, we notice that we find this same angle against the wall.
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/r_perp.png" width="500"/>
+  <img src="assets/retro-raycasting-game-part1/r_perp.png" width="50%"/>
 </p>
 
 
-$$ cos(\theta) = \frac{||\vec{d}||}{||\vec{d_i}||} = \frac{r_{perp}}{r} $$
+$$ cos(\theta) = \frac{\|\vec{d}\|}{\|\vec{d_i}\|} = \frac{r_{perp}}{r} $$
 
 And because $$\vec{d}$$ is a unit vector, we have
 
-$$ r_{perp} = \frac{r}{||\vec{d_i}||}$$
+$$ r_{perp} = \frac{r}{\|\vec{d_i}\|}$$
 
 
 Now that we know exactly what to calculate, let's see how to do it.
@@ -89,7 +89,7 @@ Now that we know exactly what to calculate, let's see how to do it.
 A naive approach is to start with a ray of zero length and gradually lengthen it until you encounter a wall. The problem with this method is that if the elongation is greater than the thickness of a wall, there is a risk of crossing a wall without detecting it. On the other hand, if the elongation is too small the algorithm will be unnecessarily long...
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/dda_0.png" width="700"/>
+  <img src="assets/retro-raycasting-game-part1/dda_0.png" width="100%"/>
 </p>
 
 #### The DDA algorithm
@@ -97,26 +97,26 @@ A naive approach is to start with a ray of zero length and gradually lengthen it
 DAA stands for Digital differential analyzer. It follows the naive idea described earlier but adjusts the elongation so that it moves from intersection to intersection on the grid. Since the walls are squares of size of a grid cell, we only need to verify the presence of a wall at the intersection points!
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/dda_1.png" width="500"/>
+  <img src="assets/retro-raycasting-game-part1/dda_1.png" width="70%"/>
 </p>
 
 
 The key to the DDA algorithm is tha fact that the length of the ray between two parallel grid lines is constant. For each ray direction, we calculate the distance that the ray have to travel to advance one cell horizontally (in green) as well as the distance that the ray have to travel to advance one cell vertically (in blue).
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/dda_2.png" width="500"/>
+  <img src="assets/retro-raycasting-game-part1/dda_2.png" width="60%"/>
 </p>
 
 The lengths of these segments are
 
-$$ \color{green}{u_x} = \frac{||\vec{d_i}||}{|\langle \vec{d_i}, \vec{x} \rangle|} \hspace{2em} \text{and} \hspace{2em} \color{blue}{u_y} = \frac{||\vec{d_i}||}{|\langle \vec{d_i}, \vec{y} \rangle|} $$
+$$ \color{green}{u_x} = \frac{\|\vec{d_i}\|}{|\langle \vec{d_i}, \vec{x} \rangle|} \hspace{2em} \text{and} \hspace{2em} \color{blue}{u_y} = \frac{\|\vec{d_i}\|}{|\langle \vec{d_i}, \vec{y} \rangle|} $$
 
 Remember, we're looking for $$r_{perp}$$, so no need to mutilate with $$\vec{d_i}$$ if it's to do the division later!
 
 There remains a small problem, the player is not necessarily on an intersection of the grid so it is necessary to start from an offset which is calculated by multiplying $$u_x$$ and $$u_y$$ by the distance between the player and the next row and column.
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/dda_3.png" width="500"/>
+  <img src="assets/retro-raycasting-game-part1/dda_3.png" width="60%"/>
 </p>
 
 Then we iterate the extensions. In order not to confuse, we separate the progression of the ray in two. The green ray which extends from column to column and the blue ray which extends from row to row. We  must lengthen each time the shorter of the two rads.
@@ -124,7 +124,7 @@ To know when to stop, we define a control cell which is initially placed on the 
 When the control cell detects a wall, it means that the ray which has been extended has passed through a wall. We remove the last elongation to this ray and we obtain the distance we were looking for!
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/dda.gif" width="700"/>
+  <img src="assets/retro-raycasting-game-part1/dda.gif" width="80%"/>
 </p>
 
 Here is the algorithm in c++
@@ -238,7 +238,7 @@ Assuming the player's eyes are half as high as the walls, we can display all the
 
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/screenshot.png" width="700"/>
+  <img src="assets/retro-raycasting-game-part1/screenshot.png" width="70%"/>
 </p>
 
 
@@ -247,13 +247,13 @@ Hovertank 3D also had uniformly coloured walls, but we'll see that it's not very
 Let's start with a square image which will be the texture of a piece of wall. The idea is also to cut this texture into vertical strips and then to stretch or contract them according to the height of the strip of wall that is rendered on the screen.
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/redbrick.png" width="300"/>
+  <img src="assets/retro-raycasting-game-part1/redbrick.png" width="30%"/>
 </p>
 
 To know which stip of the texture needs to be apply on the screen, we have to compute the distance between the point of impact of the ray on the wall end the left side of that piece of wall. Let's note this distance $$t$$.
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/textureoffset.png" width="400"/>
+  <img src="assets/retro-raycasting-game-part1/textureoffset.png" width="50%"/>
 </p>
 
 
@@ -261,5 +261,5 @@ Given that the texture is $$N\times N$$ pixels, the corresponding band to be dis
 
 
 <p align="center">
-  <img src="assets/retro-raycasting-game-part1/texturedwalls.png" width="700"/>
+  <img src="assets/retro-raycasting-game-part1/texturedwalls.png" width="70%"/>
 </p>
