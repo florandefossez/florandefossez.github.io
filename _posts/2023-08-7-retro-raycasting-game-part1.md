@@ -111,7 +111,7 @@ The lengths of these segments are
 
 $$ \color{green}{u_x} = \frac{||\vec{d_i}||}{|\langle \vec{d_i}, \vec{x} \rangle|} \hspace{2em} \text{and} \hspace{2em} \color{blue}{u_y} = \frac{||\vec{d_i}||}{|\langle \vec{d_i}, \vec{y} \rangle|} $$
 
-Remember, we're looking for $$r_{perp}$$, so no need to mutilate with \vec{d_i} if it's to do the division later!
+Remember, we're looking for $$r_{perp}$$, so no need to mutilate with $$\vec{d_i}$$ if it's to do the division later!
 
 There remains a small problem, the player is not necessarily on an intersection of the grid so it is necessary to start from an offset which is calculated by multiplying $$u_x$$ and $$u_y$$ by the distance between the player and the next row and column.
 
@@ -153,7 +153,7 @@ class Game {
 }
 
 void Game::raycast() {
-  for (int i=0; r<w; i++) {
+  for (int i=0; i<w; i++) {
     // direction step
     int step_x = 0;
     int step_y = 0;
@@ -222,7 +222,7 @@ void Game::raycast() {
     if (collision_side == 'x') {
       perp_rays_lenght[i] = x_ray_length - u_x;
     } else {
-      perp_rays_lenght[r] = y_ray_length - u_y;
+      perp_rays_lenght[i] = y_ray_length - u_y;
     }
 
   }
@@ -250,7 +250,7 @@ Let's start with a square image which will be the texture of a piece of wall. Th
   <img src="assets/retro-raycasting-game-part1/redbrick.png" width="300"/>
 </p>
 
-To know which stip of the texture needs to be apply on the screen, we have to compute the ditance between the point of impact of the ray on the wall end the left side of that piece of wall. Let's note this ditance $$t$$.
+To know which stip of the texture needs to be apply on the screen, we have to compute the distance between the point of impact of the ray on the wall end the left side of that piece of wall. Let's note this distance $$t$$.
 
 <p align="center">
   <img src="assets/retro-raycasting-game-part1/textureoffset.png" width="400"/>
