@@ -14,12 +14,18 @@
     #loadingDiv {
       text-align: center;
     }
+
+    #infoDiv {
+      text-align: center;
+      visibility: hidden;
+    }
   </style>
 
   </head>
 
   <body>
     <div id="loadingDiv">The game is loading...</div>
+    <div id="infoDiv">Press "p" to toggle Full screen !</div>
     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
     <div style="width:200px; margin-left:auto; margin-right:auto"></div>
 
@@ -28,6 +34,8 @@
         onRuntimeInitialized: function() {
           var e = document.getElementById('loadingDiv');
           e.style.visibility = 'hidden';
+          var e = document.getElementById('infoDiv');
+          e.style.visibility = 'visible';
         }, 
         canvas: (function() {
           var canvas = document.getElementById('canvas');
