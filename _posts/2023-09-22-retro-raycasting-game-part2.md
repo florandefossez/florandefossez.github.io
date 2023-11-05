@@ -11,10 +11,10 @@ permalink: :title
 
 A few weeks ago I wanted to code a 3d video game in C++. To share my experience, I decided to write about the rendering technique I used. This post follows part 1 where I explained how to render textured walls.
 
-To make you enjoy my game (still in development) I compiled it with emscripten which gives an executable in webassembly! **Feel free to play it [here](assets/game/index.html)**. (w and s to move forward and backward as well as left and right arrows to turn)
+To make you enjoy my game (still in development) I compiled it with emscripten which gives an executable in webassembly! **Feel free to play it [here](assets/game/index.html)**.
 
+Having walls is good, but having a textured floor is even better! Let's see how I achieved the look of the floor.
 
-Avoir des murs c'est déjà bien mais avoir en plus un sol texturé c'est mieux! Voyons comment j'ai procédé pour le rendu du sol.
 
 ## The Basic Idea
 

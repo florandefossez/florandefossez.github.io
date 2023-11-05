@@ -11,7 +11,7 @@ permalink: :title
 
 A few weeks ago I wanted to code a 3d video game in C++. To share my experience, I decided to write about the rendering technique I used.
 
-To make you enjoy my game (still in development) I compiled it with emscripten which gives an executable in webassembly! **Feel free to play it [here](assets/game/index.html)**. (w and s to move forward and backward as well as left and right arrows to turn)
+To make you enjoy my game (still in development) I compiled it with emscripten which gives an executable in webassembly! **Feel free to play it [here](assets/game/index.html)**.
 
 
 Raycasting is a rendering technique to create a 3D perspective from a 2D world.
