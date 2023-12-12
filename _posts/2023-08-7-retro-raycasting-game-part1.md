@@ -25,7 +25,7 @@ The strength of the method is that it only requires the rendering calculation to
 
 The principle of the raycasting method is to start from a 2-dimensional world represented as a grid. Each square of the grid can either be a wall or an empty space. The player, on the other hand, is modeled as a point on this grid.
 
-To display what the player sees, rays are cast from the player outward until they encounter a wall. The length of the ray corresponds to the distance between the player and the wall, which allows determining the wall's height to be displayed on the screen. In the figure below, you can see that rays are sent throuth the field of view of the player. Their length determines the height of the wall strips that are drawn on the left.
+To display what the player sees, rays are cast from the player outward until they encounter a wall. The length of the ray corresponds to the distance between the player and the wall, which allows determining the wall's height to be displayed on the screen. In the figure below, you can see that rays are sent throuth the field of view of the player. Their length determines the height of the wall strips that are drawn on the right.
 
 <p align="center">
   <img src="assets/retro-raycasting-game-part1/principle.png" width="100%"/>
@@ -38,7 +38,7 @@ Let's define our game space a bit more clearly. The red point represents the pla
   <img src="assets/retro-raycasting-game-part1/vector.png" width="40%"/>
 </p>
 
-Vectors $$\vec{d}$$ and $$\vec{c}$$ together form another orthogonal basis, known as the camera's basis. The projection plane for the player's vision is directed by vector $$\vec{c}$$ and centered on $$\vec{d}$$. In the image below, you can see the camera's projection plane as well as the two rays at the edges of the player's field of vision. Note that the norm of vector $$\vec{c}$$ determines the width of the player's field of vision. The width of the field of view is equal to two times the length of the vactor $$\vec{c}$$.
+Vectors $$\vec{d}$$ and $$\vec{c}$$ together form another orthogonal basis, known as the camera's basis. The projection plane for the player's vision is directed by vector $$\vec{c}$$ and centered on $$\vec{d}$$. In the image below, you can see the camera's projection plane as well as the two rays at the edges of the player's field of vision. Note that the norm of vector $$\vec{c}$$ determines the width of the player's field of vision. The width of the field of view is equal to two times the length of the vector $$\vec{c}$$.
 
 <p align="center">
   <img src="assets/retro-raycasting-game-part1/fieldOfView.png" width="60%"/>

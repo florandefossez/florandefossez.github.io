@@ -42,7 +42,7 @@ Let $$j$$ be the index of the scanline, where $$j$$ ranges from $$1$$ to $$\frac
 With a bit of geometry and using the same notations as in Part 1, we find that:
 
 $$
-l_j = \frac{p_yw}{j2\|\vec{c}\|}
+l_j = \frac{p_zw}{j2\|\vec{c}\|}
 $$
 
 Here, $$\frac{w}{2\|\vec{c}\|}$$ represents the ratio between the pixel width of the window and the in-game width of the camera.
