@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>Enchantment Optimizer</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20width%3D%22300px%22%20height%3D%22300px%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%3Cg%3E%3Cpath%20style%3D%22opacity%3A1%22%20fill%3D%22%23583f13%22%20d%3D%22M%2028.5%2C15.5%20C%2026.2872%2C16.7729%2023.9538%2C17.7729%2021.5%2C18.5C%2021.1667%2C17.5%2020.5%2C16.8333%2019.5%2C16.5C%2016.5%2C13.1667%2013.5%2C9.83333%2010.5%2C6.5C%2013.5987%2C4.44048%2016.932%2C3.27381%2020.5%2C3C%2023.6667%2C6.16667%2026.8333%2C9.33333%2030%2C12.5C%2030.5847%2C13.9976%2030.0847%2C14.9976%2028.5%2C15.5%20Z%22%2F%3E%3C%2Fg%3E%0A%3Cg%3E%3Cpath%20style%3D%22opacity%3A1%22%20fill%3D%22%23b61a35%22%20d%3D%22M%2010.5%2C6.5%20C%2013.5%2C9.83333%2016.5%2C13.1667%2019.5%2C16.5C%2018.5%2C16.8333%2017.8333%2C17.5%2017.5%2C18.5C%2013.8333%2C15.5%2010.5%2C12.1667%207.5%2C8.5C%208.29049%2C7.59872%209.29049%2C6.93205%2010.5%2C6.5%20Z%22%2F%3E%3C%2Fg%3E%0A%3Cg%3E%3Cpath%20style%3D%22opacity%3A1%22%20fill%3D%22%235b4013%22%20d%3D%22M%207.5%2C8.5%20C%2010.5%2C12.1667%2013.8333%2C15.5%2017.5%2C18.5C%2017.5%2C18.8333%2017.5%2C19.1667%2017.5%2C19.5C%2017.5%2C20.1667%2017.5%2C20.8333%2017.5%2C21.5C%2015.2549%2C22.6352%2012.9216%2C23.1352%2010.5%2C23C%207.96376%2C20.295%205.29709%2C17.795%202.5%2C15.5C%202.36596%2C13.7085%202.69929%2C12.0418%203.5%2C10.5C%204.51369%2C9.32627%205.84702%2C8.6596%207.5%2C8.5%20Z%22%2F%3E%3C%2Fg%3E%0A%3Cg%3E%3Cpath%20style%3D%22opacity%3A1%22%20fill%3D%22%23bababa%22%20d%3D%22M%202.5%2C15.5%20C%205.29709%2C17.795%207.96376%2C20.295%2010.5%2C23C%2012.9216%2C23.1352%2015.2549%2C22.6352%2017.5%2C21.5C%2017.5%2C22.5%2017.5%2C23.5%2017.5%2C24.5C%2015.2549%2C25.6352%2012.9216%2C26.1352%2010.5%2C26C%206.78618%2C23.1424%204.11951%2C19.6424%202.5%2C15.5%20Z%22%2F%3E%3C%2Fg%3E%0A%3Cg%3E%3Cpath%20style%3D%22opacity%3A1%22%20fill%3D%22%23d39918%22%20d%3D%22M%2019.5%2C16.5%20C%2020.5%2C16.8333%2021.1667%2C17.5%2021.5%2C18.5C%2021.5%2C18.8333%2021.5%2C19.1667%2021.5%2C19.5C%2020.1667%2C20.8333%2018.8333%2C20.8333%2017.5%2C19.5C%2017.5%2C19.1667%2017.5%2C18.8333%2017.5%2C18.5C%2017.8333%2C17.5%2018.5%2C16.8333%2019.5%2C16.5%20Z%22%2F%3E%3C%2Fg%3E%0A%3Cg%3E%3Cpath%20style%3D%22opacity%3A1%22%20fill%3D%22%23a2a2a2%22%20d%3D%22M%2028.5%2C15.5%20C%2028.5%2C16.1667%2028.5%2C16.8333%2028.5%2C17.5C%2026.6644%2C19.588%2024.3311%2C20.9213%2021.5%2C21.5C%2021.5%2C20.8333%2021.5%2C20.1667%2021.5%2C19.5C%2021.5%2C19.1667%2021.5%2C18.8333%2021.5%2C18.5C%2023.9538%2C17.7729%2026.2872%2C16.7729%2028.5%2C15.5%20Z%22%2F%3E%3C%2Fg%3E%0A%3Cg%3E%3Cpath%20style%3D%22opacity%3A1%22%20fill%3D%22%23882120%22%20d%3D%22M%2017.5%2C19.5%20C%2018.8333%2C20.8333%2020.1667%2C20.8333%2021.5%2C19.5C%2021.5%2C20.1667%2021.5%2C20.8333%2021.5%2C21.5C%2021.5%2C22.5%2021.5%2C23.5%2021.5%2C24.5C%2020.4863%2C25.6737%2019.153%2C26.3404%2017.5%2C26.5C%2017.5%2C25.8333%2017.5%2C25.1667%2017.5%2C24.5C%2017.5%2C23.5%2017.5%2C22.5%2017.5%2C21.5C%2017.5%2C20.8333%2017.5%2C20.1667%2017.5%2C19.5%20Z%22%2F%3E%3C%2Fg%3E%0A%3Cg%3E%3Cpath%20style%3D%22opacity%3A1%22%20fill%3D%22%232f1d07%22%20d%3D%22M%2028.5%2C17.5%20C%2030.0847%2C18.0024%2030.5847%2C19.0024%2030%2C20.5C%2027.3413%2C22.2465%2024.508%2C23.5798%2021.5%2C24.5C%2021.5%2C23.5%2021.5%2C22.5%2021.5%2C21.5C%2024.3311%2C20.9213%2026.6644%2C19.588%2028.5%2C17.5%20Z%22%2F%3E%3C%2Fg%3E%0A%3Cg%3E%3Cpath%20style%3D%22opacity%3A1%22%20fill%3D%22%2337200a%22%20d%3D%22M%203.5%2C10.5%20C%202.69929%2C12.0418%202.36596%2C13.7085%202.5%2C15.5C%204.11951%2C19.6424%206.78618%2C23.1424%2010.5%2C26C%2012.9216%2C26.1352%2015.2549%2C25.6352%2017.5%2C24.5C%2017.5%2C25.1667%2017.5%2C25.8333%2017.5%2C26.5C%2015.575%2C28.4619%2013.2417%2C29.2952%2010.5%2C29C%207.33333%2C25.8333%204.16667%2C22.6667%201%2C19.5C%200.333333%2C16.8333%200.333333%2C14.1667%201%2C11.5C%201.67076%2C10.7476%202.5041%2C10.4142%203.5%2C10.5%20Z%22%2F%3E%3C%2Fg%3E%0A%3C%2Fsvg%3E" />
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+
+<script>
+
+var toRoman = {1: "I", 2: "II", 3: "III", 4: "IV", 5: "V"};
+
+var ALL_ITEMS = ["bow", "crossbow", "axe", "boots", "chestplate", "helmet", "hoe", "leggings", "pickaxe", "shovel", "sword", "elytra", "fishing_rod", "trident", "mace"]
+
+var data = {
+  "mending": {
+    "max": 1,
+    "rarity": 2,
+    "id": "0",
+    "items": [
+      "helmet",
+      "chestplate",
+      "leggings",
+      "boots",
+      "pickaxe",
+      "shovel",
+      "axe",
+      "sword",
+      "hoe",
+      "fishing_rod",
+      "bow",
+      "elytra",
+      "trident",
+      "crossbow",
+      "mace"
+    ],
+    "incompatibilities": [
+      "infinity"
+    ]
+  },
+  "unbreaking": {
+    "max": 3,
+    "rarity": 1,
+    "id": "1",
+    "items": [
+      "helmet",
+      "chestplate",
+      "leggings",
+      "boots",
+      "pickaxe",
+      "shovel",
+      "axe",
+      "sword",
+      "hoe",
+      "fishing_rod",
+      "bow",
+      "elytra",
+      "trident",
+      "crossbow",
+      "mace"
+    ],
+    "incompatibilities": []
+  },
+  "sharpness": {
+    "max": 5,
+    "rarity": 1,
+    "id": "2",
+    "items": [
+      "axe",
+      "sword",
+    ],
+    "incompatibilities": [
+      "bane_of_arthropods",
+      "smite",
+    ]
+  },
+  "fortune": {
+    "max": 3,
+    "rarity": 2,
+    "id": "3",
+    "items": [
+      "pickaxe",
+      "shovel",
+      "axe",
+      "hoe"
+    ],
+    "incompatibilities": [
+      "silk_touch"
+    ]
+  },
+  "efficiency": {
+    "max": 5,
+    "rarity": 1,
+    "id": "4",
+    "items": [
+      "pickaxe",
+      "shovel",
+      "axe",
+      "hoe"
+    ],
+    "incompatibilities": []
+  },
+  "protection": {
+    "max": 4,
+    "rarity": 1,
+    "id": "5",
+    "items": [
+      "helmet",
+      "chestplate",
+      "leggings",
+      "boots"
+    ],
+    "incompatibilities": [
+      "fire_protection",
+      "blast_protection",
+      "projectile_protection"
+    ]
+  },
+  "fire_protection": {
+    "max": 4,
+    "rarity": 1,
+    "id": "6",
+    "items": [
+      "helmet",
+      "chestplate",
+      "leggings",
+      "boots"
+    ],
+    "incompatibilities": [
+      "protection",
+      "blast_protection",
+      "projectile_protection"
+    ]
+  },
+  "feather_falling": {
+    "max": 4,
+    "rarity": 1,
+    "id": "7",
+    "items": [
+      "boots"
+    ],
+    "incompatibilities": []
+  },
+  "blast_protection": {
+    "max": 4,
+    "rarity": 2,
+    "id": "8",
+    "items": [
+      "helmet",
+      "chestplate",
+      "leggings",
+      "boots"
+    ],
+    "incompatibilities": [
+      "protection",
+      "fire_protection",
+      "projectile_protection"
+    ]
+  },
+  "projectile_protection": {
+    "max": 4,
+    "rarity": 1,
+    "id": "9",
+    "items": [
+      "helmet",
+      "chestplate",
+      "leggings",
+      "boots"
+    ],
+    "incompatibilities": [
+      "protection",
+      "fire_protection",
+      "blast_protection"
+    ]
+  },
+  "thorns": {
+    "max": 3,
+    "rarity": 4,
+    "id": "10",
+    "items": [
+      "helmet",
+      "chestplate",
+      "leggings",
+      "boots"
+    ],
+    "incompatibilities": []
+  },
+  "respiration": {
+    "max": 3,
+    "rarity": 2,
+    "id": "11",
+    "items": [
+      "helmet"
+    ],
+    "incompatibilities": []
+  },
+  "depth_strider": {
+    "max": 3,
+    "rarity": 2,
+    "id": "12",
+    "items": [
+      "boots"
+    ],
+    "incompatibilities": [
+      "frost_walker"
+    ]
+  },
+  "aqua_affinity": {
+    "max": 1,
+    "rarity": 2,
+    "id": "13",
+    "items": [
+      "helmet"
+    ],
+    "incompatibilities": []
+  },
+  "smite": {
+    "max": 5,
+    "rarity": 1,
+    "id": "14",
+    "items": [
+      "axe",
+      "sword",
+      "mace"
+    ],
+    "incompatibilities": [
+      "sharpness",
+      "bane_of_arthropods",
+      "breach",
+      "density"
+    ]
+  },
+  "bane_of_arthropods": {
+    "max": 5,
+    "rarity": 1,
+    "id": "15",
+    "items": [
+      "axe",
+      "sword",
+      "mace"
+    ],
+    "incompatibilities": [
+      "smite",
+      "sharpness",
+      "breach",
+      "density"
+    ]
+  },
+  "knockback": {
+    "max": 2,
+    "rarity": 2,
+    "id": "16",
+    "items": [
+      "sword"
+    ],
+    "incompatibilities": []
+  },
+  "fire_aspect": {
+    "max": 2,
+    "rarity": 2,
+    "id": "17",
+    "items": [
+      "sword",
+      "mace"
+    ],
+    "incompatibilities": []
+  },
+  "looting": {
+    "max": 3,
+    "rarity": 2,
+    "id": "18",
+    "items": [
+      "sword"
+    ],
+    "incompatibilities": []
+  },
+  "silk_touch": {
+    "max": 1,
+    "rarity": 4,
+    "id": "19",
+    "items": [
+      "pickaxe",
+      "shovel",
+      "axe",
+      "hoe"
+    ],
+    "incompatibilities": [
+      "fortune"
+    ]
+  },
+  "power": {
+    "max": 5,
+    "rarity": 1,
+    "id": "20",
+    "items": [
+      "bow"
+    ],
+    "incompatibilities": []
+  },
+  "punch": {
+    "max": 2,
+    "rarity": 2,
+    "id": "21",
+    "items": [
+      "bow"
+    ],
+    "incompatibilities": []
+  },
+  "flame": {
+    "max": 1,
+    "rarity": 2,
+    "id": "22",
+    "items": [
+      "bow"
+    ],
+    "incompatibilities": []
+  },
+  "infinity": {
+    "max": 1,
+    "rarity": 4,
+    "id": "23",
+    "items": [
+      "bow"
+    ],
+    "incompatibilities": [
+      "mending"
+    ]
+  },
+  "luck_of_the_sea": {
+    "max": 3,
+    "rarity": 4,
+    "id": "24",
+    "items": [
+      "fishing_rod"
+    ],
+    "incompatibilities": []
+  },
+  "lure": {
+    "max": 3,
+    "rarity": 2,
+    "id": "25",
+    "items": [
+      "fishing_rod"
+    ],
+    "incompatibilities": []
+  },
+  "frost_walker": {
+    "max": 2,
+    "rarity": 2,
+    "id": "26",
+    "items": [
+      "boots"
+    ],
+    "incompatibilities": [
+      "depth_strider"
+    ]
+  },
+  "curse_of_binding": {
+    "max": 1,
+    "rarity": 4,
+    "id": "27",
+    "items": [
+      "helmet",
+      "chestplate",
+      "leggings",
+      "boots",
+      "elytra"
+    ],
+    "incompatibilities": []
+  },
+  "curse_of_vanishing": {
+    "max": 1,
+    "rarity": 4,
+    "id": "28",
+    "items": [
+      "helmet",
+      "chestplate",
+      "leggings",
+      "boots",
+      "pickaxe",
+      "shovel",
+      "axe",
+      "sword",
+      "hoe",
+      "fishing_rod",
+      "bow",
+      "elytra",
+      "trident",
+      "crossbow",
+      "mace"
+    ],
+    "incompatibilities": []
+  },
+  "impaling": {
+    "max": 5,
+    "rarity": 2,
+    "id": "29",
+    "items": [
+      "trident"
+    ],
+    "incompatibilities": []
+  },
+  "riptide": {
+    "max": 3,
+    "rarity": 2,
+    "id": "30",
+    "items": [
+      "trident"
+    ],
+    "incompatibilities": [
+      "loyalty",
+      "channeling"
+    ]
+  },
+  "loyalty": {
+    "max": 3,
+    "rarity": 1,
+    "id": "31",
+    "items": [
+      "trident"
+    ],
+    "incompatibilities": [
+      "riptide"
+    ]
+  },
+  "channeling": {
+    "max": 1,
+    "rarity": 4,
+    "id": "32",
+    "items": [
+      "trident"
+    ],
+    "incompatibilities": [
+      "riptide"
+    ]
+  },
+  "multishot": {
+    "max": 1,
+    "rarity": 2,
+    "id": "33",
+    "items": [
+      "crossbow"
+    ],
+    "incompatibilities": [
+      "piercing"
+    ]
+  },
+  "piercing": {
+    "max": 4,
+    "rarity": 1,
+    "id": "34",
+    "items": [
+      "crossbow"
+    ],
+    "incompatibilities": [
+      "multishot"
+    ]
+  },
+  "quick_charge": {
+    "max": 3,
+    "rarity": 1,
+    "id": "35",
+    "items": [
+      "crossbow"
+    ],
+    "incompatibilities": []
+  },
+  "soul_speed": {
+    "max": 3,
+    "rarity": 4,
+    "id": "36",
+    "items": [
+      "boots"
+    ],
+    "incompatibilities": []
+  },
+  "swift_sneak": {
+    "max": 3,
+    "rarity": 4,
+    "id": "37",
+    "items": [
+      "leggings"
+    ],
+    "incompatibilities": []
+  },
+  "sweeping_edge": {
+    "max": 3,
+    "rarity": 2,
+    "id": "38",
+    "items": [
+      "sword"
+    ],
+    "incompatibilities": []
+  },
+  "density": {
+    "max": 5,
+    "rarity": 1,
+    "id": "39",
+    "items": ["mace"],
+    "incompatibilities": ["breach", "smite", "bane_of_arthropods"]
+  },
+  "wind_burst": {
+    "max": 3,
+    "rarity": 2,
+    "id": "40",
+    "items": ["mace"],
+    "incompatibilities": []
+  },
+  "breach": {
+    "max": 4,
+    "rarity": 2,
+    "id": "41",
+    "items": ["mace"],
+    "incompatibilities": ["density", "smite", "bane_of_arthropods"]
+  }
+}
+
+function id_to_ench(id) {
+  for (let [k, v] of Object.entries(data)) {
+    if (v.id == id) {
+      return k;
+    }
+  }
+}
+
+var books = {}
+var base_book_id = 0
+var selected_item = ""
+var incompatibilities = new Set()
+
+window.onload = function(){
+  for (const item of ALL_ITEMS) {
+    item_div = $("<div>")
+    item_div.addClass("tool")
+    item_div.data({"item_name": item})
+    item_div.append(`<img src=assets/${item}.svg>`)
+    $("div.toolchoice").append(item_div)
+  }
+  $("div.tool").click(choose_tool)
+  $("div.add_book").click(add_book)
+  $('button.compute').click(compute);
+}
+
+function choose_tool(e) {  
+  selected_item = $(e.currentTarget).data().item_name
+  $('div.books div.book').remove();
+  incompatibilities.clear();
+
+  if (selected_item != ""){
+    $('div.books').prepend(
+      $('<div>')
+      .data({"id":0})
+      .addClass('item')
+      .addClass('book')
+      .css("background-image", `linear-gradient(rgba(245, 245, 220, 0.5), rgba(245, 245, 220, 0.5)), url(assets/${selected_item}.svg)`)
+      .append(
+        $('<div>')
+          .addClass("repairCost")
+          .append("<img class='tooltip' src='assets/anvil.svg'>")
+          .append("<span class='tooltiptext'>Repair Cost</span>")
+          .append($('<button>')
+            .append(0)
+            .addClass('level_button')
+            .addClass('selected')
+            .click(click_rp)
+          )
+          .append($('<button>')
+            .append(1)
+            .addClass('level_button')
+            .click(click_rp)
+          )
+          .append($('<button>')
+            .append(3)
+            .addClass('level_button')
+            .click(click_rp)
+          )
+          .append($('<button>')
+            .append(7)
+            .addClass('level_button')
+            .click(click_rp)
+          )
+          .append($('<button>')
+            .append(15)
+            .addClass('level_button')
+            .click(click_rp)
+          )
+      )
+      .append(
+        $("<div>")
+        .addClass("add_enchantment")
+        .append("<img src='assets/plus.svg'>")
+        .click(add_enchantment)
+      )
+    );
+    for (const e in data) {
+      if (!data[e].items.includes(selected_item)) {
+        incompatibilities.add(e)
+      }
+    }
+    books = {0:{"book": $('div.books div.item'), base_enchantment_id: 0, "enchantments": {}, "ench": new Set(), "rp": 0}};
+    base_book_id = 1;
+  } else {
+    books = {};
+    base_book_id = 0;
+  }
+}
+
+function add_book(e) {
+  book = $('<div>')
+    .addClass('book')
+    .data({"id": base_book_id})
+    .append(
+      $("<div>")
+      .addClass("remove_book")
+      .append("<img src='assets/delete.svg'>")
+      .click(remove_book)
+    )
+    .append(
+      $('<div>')
+        .addClass("repairCost")
+        .append("<img class='tooltip' src='assets/anvil.svg'>")
+        .append("<span class='tooltiptext'>Repair Cost</span>")
+        .append($('<button>')
+          .append(0)
+          .addClass('level_button')
+          .addClass('selected')
+          .click(click_rp)
+        )
+        .append($('<button>')
+          .append(1)
+          .addClass('level_button')
+          .click(click_rp)
+        )
+        .append($('<button>')
+          .append(3)
+          .addClass('level_button')
+          .click(click_rp)
+        )
+        .append($('<button>')
+          .append(7)
+          .addClass('level_button')
+          .click(click_rp)
+        )
+        .append($('<button>')
+          .append(15)
+          .addClass('level_button')
+          .click(click_rp)
+        )
+      )
+    .append(
+      $("<div>")
+      .addClass("add_enchantment")
+      .append("<img src='assets/plus.svg'>")
+      .click(add_enchantment)
+    )
+
+  $(e.currentTarget).before(book)
+  books[base_book_id] = {"book": book, base_enchantment_id: 0, "enchantments": {}, "ench": new Set(), "rp": 0};
+  base_book_id++;
+  book.children('button.add_enchantment').click();
+}
+
+function remove_book(e) {
+  book_id = $(e.currentTarget).parent().data().id;
+  $(e.currentTarget).parent().remove();
+
+  var enchs = books[book_id].ench;
+  delete books[book_id];
+  var can_add;
+
+  for (removed_ench of enchs) { 
+    data[removed_ench].incompatibilities.forEach(e => {
+      if (selected_item == "" || data[e].items.includes(selected_item)) {
+        can_add = true;
+        for (b of Object.values(books)) {
+          data[e].incompatibilities.forEach(i => {
+            can_add = !b.ench.has(i) && can_add
+          });
+        }
+        if (can_add) {
+          $('select.enchantment').append(
+            $('<option>', { value : e })
+            .text(e.replaceAll('_', ' '))
+          )
+        }
+      }
+    });
+  }
+}
+
+function add_enchantment(e) {
+  book_id = $(e.currentTarget).parent().data().id;
+  book = books[book_id]
+  enchantment_id = books[book_id].base_enchantment_id;
+  enchantment = $('<div>')
+    .data({"id": enchantment_id, "book_id": book_id})
+    .addClass('enchantment')
+    .append(
+      $("<div>")
+      .addClass("del_enchantment")
+      .append("<img src='assets/delete.svg'>")
+      .click(remove_enchantment)
+    )
+    .append(
+      $('<select>')
+      .addClass('enchantment')
+      .append(
+        $('<option/>', { value : "" })
+        .append('Enchantment')
+      )
+      .change(display_levels)
+    );
+  $(e.currentTarget).before(enchantment);
+  book.enchantments[enchantment_id] = {"enchantment": enchantment, "ench": "", "level":0};
+  books[book_id].base_enchantment_id = enchantment_id + 1;
+
+  for (const e in data) {
+    if (!incompatibilities.has(e) && !book.ench.has(e)) {
+      enchantment.children('select.enchantment').append(
+        $('<option>', { value : e })
+        .text(e.replaceAll('_', ' '))
+      )
+    }
+  }
+
+}
+
+function remove_enchantment(e) {
+  enchantment_data = $(e.currentTarget).parent().data();
+  book_id = enchantment_data.book_id;
+  enchantment_id = enchantment_data.id;
+  book = books[book_id];
+  enchantment = book.enchantments[enchantment_id];
+  $(e.currentTarget).parent().remove();
+
+  if (enchantment.ench) {
+    book.ench.delete(enchantment.ench);
+    // si on enleve des incompatibilités, on garni les listes
+    var can_add;
+    data[enchantment.ench].incompatibilities.forEach(e => {
+      if (selected_item == "" || data[e].items.includes(selected_item)) {
+        can_add = true;
+        for (b of Object.values(books)) {
+          data[e].incompatibilities.forEach(i => {
+            can_add = !b.ench.has(i) && can_add
+          });
+        }
+        if (can_add) {
+          $('select.enchantment').append(
+            $('<option>', { value : e })
+            .text(e.replaceAll('_', ' '))
+          )
+        }
+      }
+    });
+    //ajouter l'ancien enchantment aux listes du book
+    book.book.children('div.enchantment')
+    .children('select.enchantment').append(
+      $('<option>', { value : enchantment.ench })
+      .text(enchantment.ench.replaceAll('_', ' '))
+    );
+  }
+  delete books[book_id].enchantments[enchantment_id]
+}
+
+function display_levels(e) {
+  const new_ench = e.currentTarget.value;
+  var ench_data = $(e.currentTarget).parent().data();
+  var book = books[ench_data.book_id];
+  var enchantment = book.enchantments[ench_data.id]
+  $(e.currentTarget).siblings().remove("button.level_button")
+  if (new_ench){
+    var n_level = data[new_ench].max
+    for (var i=n_level; i>=1; i--) {
+      $(e.currentTarget).after(
+        $('<button>')
+        .append(i)
+        .addClass('level_button')
+        .click(click_level)
+      )
+    }
+    $(e.currentTarget).siblings('button.level_button').first().addClass('selected');
+  }
+  //si on ajoute un enchantement
+  if (new_ench != "") {
+    book.ench.add(new_ench);
+    // is on ajoute des incompatibilités, on modifie les listes
+    data[new_ench].incompatibilities.forEach(e => {
+      incompatibilities.add(e);
+      $('select.enchantment').children('option[value="' + e + '"]').remove();
+    });
+  }
+
+  // si on remplace un ancien enchantment
+  if (enchantment.ench != "") {
+    book.ench.delete(enchantment.ench);
+    // si on enleve des incompatibilités, on garni les listes
+    var can_add;
+    data[enchantment.ench].incompatibilities.forEach(e => {
+      if (selected_item == "" || data[e].items.includes(selected_item)) {
+        can_add = true;
+        for (b of Object.values(books)) {
+          data[e].incompatibilities.forEach(i => {
+            can_add = !b.ench.has(i) && can_add
+          });
+        }
+        if (can_add) {
+          $('select.enchantment').append(
+            $('<option>', { value : e })
+            .text(e.replaceAll('_', ' '))
+          )
+        }
+      }
+    });
+    //ajouter l'ancien enchantment aux listes du book
+    book.book.children('div.enchantment').filter((n,e) => {
+      return $(e).data('id') != ench_data.id
+    }).children('select.enchantment').append(
+      $('<option>', { value : enchantment.ench })
+      .text(enchantment.ench.replaceAll('_', ' '))
+    );
+  }
+
+  //ajouter à data
+  enchantment.ench = new_ench;
+  
+  //supprimer le nouvel enchantment des listes du book
+  if (new_ench != "") {
+    book.book.children('div.enchantment').filter((n,e) => {
+      return $(e).data('id') != ench_data.id
+    }).children('select.enchantment').children('option[value="' + new_ench + '"]').remove();
+    enchantment.level = 1;
+  } else {
+    enchantment.level = 0;
+  }
+} 
+
+function click_level(e) {
+  if (!$(e.currentTarget).hasClass("selected")) {
+    $(e.currentTarget).siblings("button.selected").removeClass("selected");
+    $(e.currentTarget).addClass("selected");
+    var ench_data = $(e.currentTarget).parent().data();
+    books[ench_data.book_id].enchantments[ench_data.id].level = parseInt(e.currentTarget.innerHTML);
+  }
+}
+
+function click_rp(e) {
+  if (!$(e.currentTarget).hasClass("selected")) {
+    $(e.currentTarget).siblings("button.selected").removeClass("selected");
+    $(e.currentTarget).addClass("selected");
+    var book_id = $(e.currentTarget).parent().parent().data().id;
+    books[book_id].rp = parseInt(e.currentTarget.innerHTML);
+  }
+
+}
+
+function compute() {
+
+let wasmExports = null;
+
+let wasmTable = new WebAssembly.Table({
+  'initial': 1,
+  'maximum': 1,
+  'element': 'anyfunc'
+});
+
+let asmLibraryArg = { 
+  "__handle_stack_overflow": ()=>{},
+  "emscripten_resize_heap": (size)=>{
+      wasmExports.memory.grow((size - wasmExports.memory.buffer.byteLength + 65535) / 65535)
+  },
+  "emscripten_memcpy_big": (dest, src, num) => {Uint8Array.copyWithin(dest, src, src + num);},
+  "fd_write": ()=>{},
+  "__lock": ()=>{}, 
+  "__unlock": ()=>{},
+  "memory": new WebAssembly.Memory({initial: 256, maximum: 256}), 
+  "table": wasmTable 
+};
+
+var info = {
+  'env': asmLibraryArg,
+  'wasi_snapshot_preview1': asmLibraryArg
+};
+
+async function loadWasm(){
+  let response = await fetch('main.wasm');
+  let bytes = await response.arrayBuffer();
+  let wasmObj = await WebAssembly.instantiate(bytes, info);
+  wasmExports = wasmObj.instance.exports;
+}
+
+// To build main.c into wasm: emcc main.c -sWASM -sEXPORTED_FUNCTIONS=_compute,_set_input,_clean,_get_result -o main.html
+var p = loadWasm();
+
+p.then(() => {
+
+  let n_book = 0;
+  let n_ench = 0;
+  for (b of Object.values(books)) {
+    for (e of Object.values(b.enchantments).sort((a,b) => data[a.ench].id - data[b.ench].id)) {
+      wasmExports.set_input(n_ench, n_book, data[e.ench].id, e.level, b.rp);
+      n_ench++;
+    }
+    // if item has no ench put mending with level 0
+    if (!Object.keys(b.enchantments).length && n_book === 0) {
+      wasmExports.set_input(0, 0, 0, 0, b.rp);
+      n_ench++;
+    }
+    n_book++;
+  }
+
+  wasmExports.compute(n_ench, books[0].book.hasClass("item") ? 1 : 0);
+  $("div.tree").children().detach()
+  var view = new Uint8Array(wasmExports.memory.buffer)
+  let repairCostBookEndpoints = new Array(16);  // track the repair cost of each book endpints
+  let leaves = new Array(16);
+  let ptr = wasmExports.get_result();
+  n_ench = view[ptr];
+  let flags = view[ptr + 1];
+  ptr += 2;
+  repairCostBookEndpoints[view[ptr]] = view[ptr+3];
+  leaves[view[ptr]] = $("<li>")
+  $("div.tree").append( $("<ul>").append(leaves[view[ptr]]) )
+  leaf = $("<div>")
+  leaf.css("background-image", `linear-gradient(rgba(245, 245, 220, 0.5), rgba(245, 245, 220, 0.5)), url(assets/${selected_item === "" ? "book" : selected_item}.svg)`)
+  for (let i=0; i<n_ench; i++) {
+    if (view[ptr + 4*i+2] === 0) {continue;}
+    leaf.append(`<p class="ench"> ${id_to_ench(view[ptr + 4*i+1])} ${toRoman[view[ptr + 4*i+2]]}</p>`)
+  }
+  leaves[view[ptr]].append(leaf);
+  while (1) {
+    ptr = wasmExports.get_result();
+    if (!ptr) {break;}
+    n_ench = view[ptr]
+    ptr += 2;
+    let book_id1;
+    let book_id2;
+    for (let i=0; i<n_ench; i++) {
+      if (repairCostBookEndpoints[view[ptr + 4*i]] === undefined) {
+        book_id2 = view[ptr + 4*i];
+        repairCostBookEndpoints[book_id2] = view[ptr + 4*i + 3];
+      } else if (repairCostBookEndpoints[view[ptr + 4*i]] !== view[ptr + 4*i+3]) {
+        book_id1 = view[ptr + 4*i];
+        repairCostBookEndpoints[book_id1] = view[ptr + 4*i+3];
+      }
+    }
+
+    let ul = $("<ul>");
+    let li1 = $("<li>");
+    let li2 = $("<li>");
+    let div1 = $("<div>");
+    let div2 = $("<div>");
+    leaves[book_id1].children().append(`<p class="cost">cost ${flags & 63}</p>`)
+    leaves[book_id1].append(ul);
+    
+    if (flags & 0x40) {
+      ul.append(li1);
+      ul.append(li2);
+    } else {
+      ul.append(li2);
+      ul.append(li1);
+    }
+    li1.append(div1);
+    li2.append(div2);
+    leaves[book_id1] = li1;
+    leaves[book_id2] = li2;
+    div1.css("background-image", `linear-gradient(rgba(245, 245, 220, 0.5), rgba(245, 245, 220, 0.5)), url(assets/${selected_item === "" ? "book" : selected_item}.svg)`)
+    div2.css("background-image", `linear-gradient(rgba(245, 245, 220, 0.5), rgba(245, 245, 220, 0.5)), url(assets/book.svg)`)
+    
+    for (let i=0; i<n_ench; i++) {
+      if (view[ptr + 4*i] == book_id1 && view[ptr + 4*i+2]) {
+        leaf = div1;
+      } else if (view[ptr + 4*i] == book_id2 && view[ptr + 4*i+2]) {
+        leaf = div2
+      } else {
+        continue;
+      }
+      leaf.append(`<p class="ench">${id_to_ench(view[ptr + 4*i+1]).replaceAll('_', ' ')} ${toRoman[view[ptr + 4*i+2]]}</p>`);
+    }
+    flags = view[ptr - 1]
+  }
+  wasmExports.clean();
+})  
+}
+
+</script>
+
+<style>
+
+h1 {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 20px;
+}
+h2 {
+  font-size: 25px;
+  padding: 20px 0px 20px 10%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: cursive;
+  font-size: 13px;
+}
+
+div.toolchoice {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 20%;
+}
+div.tool {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin: 10px;
+  padding: 4px 4px;
+  border: 2px solid black;
+  border-radius: 20%;
+  transition: 0.2s;
+}
+div.tool img {
+  width: 50px;
+  height: 50px;
+}
+
+
+
+
+div.books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+div.books > div {
+  background-image: linear-gradient(rgba(245, 245, 220, 0.5), rgba(245, 245, 220, 0.5)), url("assets/book.svg");
+  display: grid;
+  grid-template-rows: auto;
+  align-content: start;
+  place-items: center;
+  border: solid black 2px;
+  border-radius: 3px;
+  padding: 5px;
+  min-height: 180px;
+  min-width: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+div.book div.enchantment, div.book div.repairCost {
+  place-self: start;
+  display: flex;
+  align-items: center;
+  /* border: solid black 1px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+  */
+  padding: 2px 3px;
+  margin: 1px;
+  position: relative;
+}
+
+div.book div.repairCost img {
+  height: 20px;
+  width: 20px;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  height: 20px;
+  background-color: white;
+  border: solid 1px black;
+  border-radius: 2px;
+  text-align: center;
+  border-radius: 2px;
+  top: -22px;
+  position: absolute;
+  z-index: 1;
+}
+.tooltip:hover + .tooltiptext {
+  visibility: visible;
+}
+.tooltip:hover {
+  cursor: help;
+}
+
+div.book .remove_book {
+  place-self: end;
+  height: 20px;
+  width: 20px;
+  border: solid 1px black;
+  border-radius: 2px;
+  cursor: pointer;
+  background-color: white;
+  transition: 0.2s;
+}
+div.book .del_enchantment, div.book .add_enchantment {
+  height: 20px;
+  width: 20px;
+  border: solid 1px black;
+  border-radius: 2px;
+  cursor: pointer;
+  background-color: white;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+
+
+select.enchantment {
+  height: 20px;
+  text-align: center;
+  place-items: end;
+  border: 1px solid black;
+  border-radius: 2px;
+  appearance: none;
+  cursor: pointer;
+  text-transform: capitalize;
+  margin: 0 2px 0 5px;
+  transition: 0.2s;
+}
+.level_button {
+  padding: 0 2px;
+  margin: 0 2px;
+  width: 20px;
+  height: 20px;
+  border: solid 1px black;
+  border-radius: 2px;
+  cursor: pointer;
+  background-color: white;
+  transition: 0.2s;
+}
+.level_button:hover:not(button.selected), .remove_book :hover, .del_enchantment :hover, .add_enchantment :hover, select.enchantment:hover, div.tool:hover, .compute :hover {
+  background-color: lightgray;
+}
+button.selected {
+  background-color: gray;
+}
+
+div.compute {
+  display: flex;
+  justify-content: center;
+}
+
+button.compute {
+  background: white;
+  border: solid black 2px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 20px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.tree {
+  display: flex;
+  justify-content: center;
+}
+
+.tree ul {
+  padding-top: 20px;
+  position: relative;
+}
+.tree li {
+  float: left;
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0 5px;
+}
+.tree li::before,
+.tree li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 20px;
+}
+.tree li::after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+.tree li:only-child::after,
+.tree li:only-child::before {
+  display: none;
+}
+.tree li:only-child {
+  padding-top: 0;
+}
+.tree li:first-child::before,
+.tree li:last-child::after {
+  border: 0 none;
+}
+.tree li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after {
+  border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+}
+.tree ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 20px;
+}
+.tree li div {
+  border: 1px solid black;
+  padding: 5px 10px;
+  display: inline-block;
+  border-radius: 2px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: left;
+  min-height: 25px;
+  min-width: 100px;
+}
+
+.tree li p.ench {
+  text-transform: capitalize;
+  font-size: 15px;
+}
+.tree li p.cost {
+  font-size: 10px;
+  text-align: center;
+}
+
+</style>
+
+</head>
+<body>
+  <h1>Minecraft Enchanted Book Combination Optimizer</h1>
+  <h2>1- Choose a tool</h2>
+  <div class="toolchoice"></div>
+  <h2>2- Add books and enchantments</h2>
+  <div class="books">
+    <div class="add_book">
+      <img src="assets/plus.svg" style="opacity: 0.7;">
+    </div>
+  </div>
+  <h2>3- Compute the best combination</h2>
+  <div class="compute">
+    <button class="compute">Compute</button>
+  </div>
+  <h2>4- Results</h2>
+  <div class="tree"></div>
+  <div style="height: 200px;">
+</body>
+
+</html>

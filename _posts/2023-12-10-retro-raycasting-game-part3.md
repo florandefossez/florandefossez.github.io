@@ -92,7 +92,7 @@ Well, we know the size of the image to display but we still don't know where to 
 
 ### -- $$ y_0 $$ --
 
-To calculate $$y_0$$, we need $$s_y$$, the distance between the top of the player's field of view and the top of the object. The trick is to see that the length of the red segment in the image is equal to $$ s_0 - p_z $$. So, we easily find that $$ s_y = \frac{s}{2} - (s_0 - p_z)$$."
+To calculate $$y_0$$, we need $$s_y$$, the distance between the top of the player's field of view and the top of the object. The trick is to see that the length of the red segment in the image is equal to $$ s_0 - p_z $$. So, we easily find that $$ s_y = \frac{s}{2} - (s_0 - p_z)$$.
 
 <p align="center">
   <img src="assets/retro-raycasting-game-part3/objects_offset.jpg" width="80%"/>
